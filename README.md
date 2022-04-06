@@ -1,7 +1,7 @@
 # Kristen, Emma, and Keri's repository
 ### What social problem is being addressed?
-The issue of homelessness in LA has been ongoing for decades and has been exacerbated in recent years due to the pandemic.
+The issue of homelessness in LA has been ongoing for decades and has been exacerbated in recent years due to the pandemic. In particular, “Asian Americans are the fastest-growing homeless population in San Francisco and LA. Homelessness is up 86% in LA’s Koreatown, yet plans for a shelter were recently scuttled by neighborhood protestors," according to LMU. The pandemic has also fueled hate crimes against Asians across the US, resulting in even more vulnerability for the AAPI homeless.
 ### Who is being empowered by your mapplication?
-Our project will benefit and empower marginalized groups such as those who may often get turned away by homeless shelters and other resources available to homeless people, such as public assistance.
+Our project will benefit and empower the AAPI homeless population, who often stay in single-room occupancies or temporary housing such as living in their cars in order to avoid being out on the streets. This often leads to an undercount of the AAPI homeless and impoverished population, which affects resource allocation.
 ### Whaat technical and ethical problems could there be in developing this tool?
-It may be difficult to obtain accurate and ethically-sourced data due to the fact that many homeless people may not feel comfortable sharing their sitautions and may be distrustful of organizations trying to collect information about them.
+It may be difficult to obtain accurate and ethically-sourced data due to the fact that many homeless people may not feel comfortable sharing their sitautions and may be distrustful of organizations trying to collect information about them. They may not want to categorize themselves as homeless, and there may be language barriers that prevent communication or fears that their citizenship status will be jeopardized by speaking to data collectors.
