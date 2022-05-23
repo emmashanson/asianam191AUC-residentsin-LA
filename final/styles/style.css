@@ -4,6 +4,7 @@ body{
     grid-template-areas: "header" "main_content" "footer";
     background-color: rgb(102, 180, 114);
     gap: 10px;
+    text-align: center;
 }
 
 header{
@@ -26,8 +27,8 @@ header{
 #contents{
     grid-area: content;
     display: grid;
-    grid-template-rows: 3fr 1fr; 
-    grid-template-areas: "buttonHome" "survey"
+    grid-template-rows: 1fr 5fr; 
+    grid-template-areas: "buttonHome" "survey" "backg";
 }
 
 #the_map{
@@ -40,10 +41,15 @@ header{
     justify-self: center; /* added this to center the button in the div */
 }
 
+#theBackground{
+    grid-area: backg;
+    justify-self: center;
+}
+
 /* css for the button */
 #surveyButton{
     padding: 15px 32px;
-    margin: 10px;
+    margin: 15px;
     background-color: #4CAF50;
     cursor: pointer;
 }
@@ -51,10 +57,32 @@ header{
 /* css for button to get rid of the underline */
 #surveyButton a{
     text-decoration: none; 
+    align-self: center;
+    color: black;
 }
 
 #placeForButtons{
     grid-area: buttonHome;
-    display:grid;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+#backgroundButton{
+    padding: 10px 30px;
+    margin: 15px;
+    background-color: #726bac;
+    cursor: pointer;
+}
+
+/* css for button to get rid of the underline */
+#backgroundButton a{
+    text-decoration: none; 
+    align-self: center;
+    color: black;
+}
+
+#placeForButtons{
+    grid-area: buttonHome;
+    display: grid;
+    grid-template-columns: repeat(2, 3fr);
 }
