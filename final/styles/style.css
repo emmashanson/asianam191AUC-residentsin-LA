@@ -1,6 +1,6 @@
 body{
     display: grid;
-    grid-template-rows: 50px auto auto;
+    grid-template-rows: 100px auto auto;
     grid-template-areas: "header" "main_content" "footer";
     background-color: rgb(102, 180, 114);
     gap: 10px;
@@ -27,8 +27,9 @@ header{
 #contents{
     grid-area: content;
     display: grid;
-    grid-template-rows: 1fr 5fr; 
-    grid-template-areas: "buttonHome" "survey" "backg";
+    grid-template-rows: 1fr 2fr; 
+    grid-template-areas: "survey" "description" "backg";
+    justify-self: center;
 }
 
 #the_map{
@@ -44,13 +45,19 @@ header{
 #theBackground{
     grid-area: backg;
     justify-self: center;
+    background-color:#dcd4a1;
+}
+
+#theDescription{
+    grid-area: description;
+    justify-self: center;
 }
 
 /* css for the button */
 #surveyButton{
     padding: 15px 32px;
-    margin: 15px;
-    background-color: #4CAF50;
+    margin: 10px;
+    background-color: #e8ebb2d8;
     cursor: pointer;
 }
 
@@ -61,28 +68,15 @@ header{
     color: black;
 }
 
-#placeForButtons{
+#backgroundButton{
+    padding: 15px 32px;
+    margin: 10px;
+    background-color: #dcd4a1;
+    cursor: pointer; 
+}
+
+/*#placeForButtons{
     grid-area: buttonHome;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-}
-
-#backgroundButton{
-    padding: 10px 30px;
-    margin: 15px;
-    background-color: #726bac;
-    cursor: pointer;
-}
-
-/* css for button to get rid of the underline */
-#backgroundButton a{
-    text-decoration: none; 
-    align-self: center;
-    color: black;
-}
-
-#placeForButtons{
-    grid-area: buttonHome;
-    display: grid;
-    grid-template-columns: repeat(2, 3fr);
-}
+}*/
