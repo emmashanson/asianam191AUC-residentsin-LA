@@ -79,4 +79,8 @@ header{
     grid-area: buttonHome;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+<<<<<<< HEAD
 }*/
+=======
+}*/
+>>>>>>> 691be256a14c115f1cbd01d16e1b1ec6a9d9148a
