@@ -8,6 +8,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+
+// new L.marker().addTo(map)
 // create a function to add markers
 function addMarker(lat,lng,title,message){
     console.log(message)
@@ -34,3 +36,14 @@ function processData(results){
 }
 
 loadData(dataUrl)
+
+const LTT = {lat: 34.047863935864214, lng: -118.24065320000001};
+const Torrance = {lat: 33.8291867, lng: -118.3169714};
+const Glendale = {lat: 34.1980641, lng: -118.2351192};
+const EastLA = {lat: 34.0440239, lng: -118.1854042}; 
+const Westwood = {lat: 34.0631451, lng: -118.4367551}; 
+
+const LTTtorrance = new L.Geodesic([LTT, Torrance]).addTo(map);
+const LTTglendale = new L.Geodesic([LTT, Glendale]).addTo(map);
+const LTTEastLA = new L.Geodesic([LTT, EastLA]).addTo(map);
+const LTTWestwood = new L.Geodesic([LTT, Westwood]).addTo(map);
