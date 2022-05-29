@@ -27,7 +27,7 @@ header{
 #contents{
     grid-area: content;
     display: grid;
-    grid-template-rows: 1fr 2fr; 
+    grid-template-rows: 1fr 3fr; 
     grid-template-areas: "survey" "description" "backg";
     justify-self: center;
 }
@@ -74,9 +74,3 @@ header{
     background-color: #dcd4a1;
     cursor: pointer; 
 }
-
-/*#placeForButtons{
-    grid-area: buttonHome;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}*/
