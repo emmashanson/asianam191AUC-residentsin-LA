@@ -9,7 +9,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-// new L.marker().addTo(map)
 // create a function to add markers
 function addMarker(lat,lng,title,message){
     console.log(message)
