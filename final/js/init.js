@@ -78,9 +78,9 @@ function adddatatotable(){
 function placeLTTMG(){
     // use this to get the options https://leafletjs.com/examples/custom-icons/
     let LTTicon = L.icon({
-        iconUrl: 'NsuSlackIcon2021-2022.png',
+        iconUrl: 'https://www.pngkey.com/png/full/775-7750278_apartment-building-orange-green-yellow.png',
     
-        iconSize:     [38, 38], // size of the icon
+        iconSize:     [40, 40], // size of the icon
         iconAnchor:   [20, 30], // point of the icon which will correspond to marker's location
         popupAnchor:  [0, -25] // point from which the popup should open relative to the iconAnchor        
     })
