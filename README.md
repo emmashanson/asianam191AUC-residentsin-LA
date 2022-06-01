@@ -1,4 +1,4 @@
-# Kristen, Emma, and Keri's repository
+# Community Sentiment of Little Tokyo Towers / Miyako Gardens
 ### What social problem is being addressed?
 Little Tokyo, one of the last-remaining historic Japantowns in the U.S., is situated in Downtown L.A.. As of 2015, 25% of the population consists of adults aged 65 years or older. Additionally, 60% of this older population is linguistically isolated— meaning that they report not speaking English “very well”— while 70% of older householders in Little Tokyo live alone. As such, retirement homes for elderly and retired aren’t always accommodating for the linguistic, cultural, and community needs of the Little Tokyo elderly population. 
 
