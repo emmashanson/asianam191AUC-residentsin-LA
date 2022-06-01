@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Final Rough Draft</title>
+        <title>Community Sentiments of Little Tokyo Towers/Miyako Gardens</title>
         <!-- hint: remember to change your page title! -->
         <meta charset="utf-8" />
         <link rel="shortcut icon" href="#">
         <link rel="stylesheet" href="styles/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
 
         <!-- Leaflet's css-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -20,43 +23,59 @@
 
     <body>
         <header>
-        
-           <h1>Community Sentiment of Little Tokyo Towers/Miyako Gardens</h1> 
-           <div id="theBackground">
-            <div id="description">
-
-
-                <h3>Project Description</h3>
-                    <p>The issue 
-            <div id="backgroundButton">
-            <a href="https://docs.google.com/document/d/1luEGoedbzhedIfqYMA7nWkhUxx3iNjDuX2HC2Sblv8w/edit?usp=sharing">Read about our Background and Context!</a>
-        </div> 
+            <div class="top-header"> 
+                <div class="header-text">
+                    <div id="title">
+                        <span id="title-text"><h1>Community Sentiment of Little Tokyo Tower/Miyako Gardens</h1></span>
+                    
+                    <div id="pages">
+                        <a href="index.html" class="active page-link">Home |</a>
+                        <a href="https://docs.google.com/document/d/1luEGoedbzhedIfqYMA7nWkhUxx3iNjDuX2HC2Sblv8w/edit?usp=sharing" class="page-link">About the Project |</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6LIQDOZppqIpB3bkZPmSGuE-8Y5kLcFKNseeG3LmdV5_kdQ/viewform" class="page-link" target="_blank">Take the Survey</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+         
+            <div class="description">
+                <div id="des">
+                    <h3>How to Use the Site</h3>
+                    <p>instructions</p>
+                </div>
+            </div>
+           
         </header>
 
         <div class="main">
-            
             <div id="the_map"></div>
-            <div id="contents">
-                
-                <!--div id="placeForButtons"></div> -->
-                <!-- Be sure to use your own survey here!!!!!!! -->
-                <div id="theSurvey">
-                    <div id="surveyButton">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe6LIQDOZppqIpB3bkZPmSGuE-8Y5kLcFKNseeG3LmdV5_kdQ/viewform?usp=sf_link">📝Take the survey</a>
-                    </div>
-                    
+                <div id="table-container"> 
+                    <table>
+                        <tr>
+                            <th>Type of Concern</th>
+                            <th>Number of Respondents</th>
+                           </tr>
 
-                    
-                </div>
-               
+                        <tr>
+                            <td>High Living Costs</td>
+                        </tr>
+                        <tr><td>High Housing Costs</td></tr>
+                        <tr><td>Loneliness</td></tr>
+                           <tr>
+                            <td>Lack of access to Japanese businesses</td>
+                           </tr> 
+                           <tr><td>Public Transit Difficulties</td></tr> 
+                           <tr><td>Not Suitable Housing Type</td></tr> 
+                            <tr> <td>Disability</td></tr>
+                           <tr><td>Other</td></tr> 
+                    </table>
                 </div>
                 <div id="Resources">
                     <h2>Resources</h2>
                 </div>
             </div>
-            
+           
         </div>
-        <div id="footer">
+        <div id="footer">  
             Copyright(2022)
         </div>
         <script src="js/init.js"></script>
