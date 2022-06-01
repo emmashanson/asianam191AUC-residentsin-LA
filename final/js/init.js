@@ -128,12 +128,26 @@ function addTable(){
 
 loadData(dataUrl)
 
-const Torrance = {lat: 33.8291867, lng: -118.3169714};
-const Glendale = {lat: 34.1980641, lng: -118.2351192};
-const EastLA = {lat: 34.0440239, lng: -118.1854042}; 
-const Westwood = {lat: 34.0631451, lng: -118.4367551}; 
+const Torrance = L.swoopyArrow([33.8291867, -118.3169714], [34.04, -118.27], {
+    weight: 1,
+    iconAnchor: [20, 10],
+    iconSize: [20, 16]
+  }).addTo(map);
 
-const LTTtorrance = new L.Geodesic([LTT, Torrance]).addTo(map);
-const LTTglendale = new L.Geodesic([LTT, Glendale]).addTo(map);
-const LTTEastLA = new L.Geodesic([LTT, EastLA]).addTo(map);
-const LTTWestwood = new L.Geodesic([LTT, Westwood]).addTo(map);
+const Glendale = L.swoopyArrow([34.1980641, -118.2351192], [34.08, -118.23], {
+    weight: 1,
+    iconAnchor: [20, 10],
+    iconSize: [20, 16]
+  }).addTo(map);
+
+const EastLA = L.swoopyArrow([34.0440239, -118.1854042], [34.05, -118.23], {
+    weight: 1,
+    iconAnchor: [20, 10],
+    iconSize: [20, 16]
+  }).addTo(map);
+
+const Westwood = L.swoopyArrow([34.0631451, -118.4367551], [34.05, -118.27], {
+    weight: 1,
+    iconAnchor: [20, 10],
+    iconSize: [20, 16]
+  }).addTo(map);
