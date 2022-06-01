@@ -4,24 +4,76 @@ let mapOptions = {'center': [34.0709,-118.444],'zoom':10}
 // use the variables
 const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
 
+let highlivingcosts = 0;
+let highhousingcosts = 0;
+let loneliness = 0;
+let lackaccess = 0;
+let publictransit = 0;
+let housingtype = 0;
+let disability = 0;
+let other = 0;
+
+let CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 20
+});
+
+CartoDB_Positron.addTo(map);
+
 const LTT = {
     lat: 34.047863935864214,
     lng: -118.24065320000001,
     title:"Little Tokyo Towers and Miyako Gardens", 
     iconUrl:""};
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
 
 // create a function to add markers
 function addMarker(lat,lng,title,message){
     console.log(message)
-    L.marker([lat,lng]).addTo(map).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`)
+    L.circleMarker([lat,lng],
+        {
+            radius: 5,
+            weight: 2,
+            opacity: 1000,
+            fillOpacity: 100,
+        }).addTo(map).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`)
     return message
 }
 
+function incrementsurveydata(surveydata){
+    let reasonforleaving = surveydata["Which, if any, of the following factors affected your decision to leave your previous residence?"]
+    switch(reasonforleaving){
+        case 0:
+            reasonforleaving = "High cost of living";
+            highlivingcosts += 1;
+        case 1:
+            reasonforleaving = "High housing costs";
+            highhousingcosts +=1;
+        case 2:
+            reasonforleaving = "Loneliness";
+            loneliness += 1;
+        case 3:
+            reasonforleaving = "Lack of access to Japanese groceries, Japanese services, etc.";
+            lackacess += 1;
+        case 4:
+            reasonforleaving = "Difficulty accessing public transit / neighborhood not walkable";
+            publictransit += 1;
+        case 5:
+            reasonforleaving = "Housing type no longer suitable (i.e. house too big, no elevator, etc)";
+            housingtype += 1;
+        case 6:
+            reasonforleaving = "Disability (physical or mental)"
+            disability += 1;
+        case 7:
+            reasonforleaving = "Other:"
+            other += 1;
+    }
+}
+
+function adddatatotable(){
+    let 
+}
 
 function placeLTTMG(){
     // use this to get the options https://leafletjs.com/examples/custom-icons/
@@ -61,12 +113,17 @@ function processData(results){
     results.data.forEach(data => {
         console.log(data)
         addMarker(data.lat,data.lng, data["location"], data["leavefeel"])
+        incrementsurveydata(data)
     })
 }
 
 // todo: this function to draw the lines based on the lat/lng for each marker
 function drawGeodesic(){
     console.log('drawing geodesic')
+}
+
+function addTable(){
+    new addTable(document.getElementById('table-container').innerHTML = myTable);
 }
 
 loadData(dataUrl)
