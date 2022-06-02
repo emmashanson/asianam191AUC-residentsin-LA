@@ -12,6 +12,7 @@ let publictransit = 0;
 let housingtype = 0;
 let disability = 0;
 let other = 0;
+let surveytotal = 0;
 
 let CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -43,36 +44,61 @@ function addMarker(lat,lng,title,message){
 
 function incrementsurveydata(surveydata){
     let reasonforleaving = surveydata["Which, if any, of the following factors affected your decision to leave your previous residence?"]
-    switch(reasonforleaving){
-        case 0:
-            reasonforleaving = "High cost of living";
-            highlivingcosts += 1;
-        case 1:
-            reasonforleaving = "High housing costs";
-            highhousingcosts +=1;
-        case 2:
-            reasonforleaving = "Loneliness";
-            loneliness += 1;
-        case 3:
-            reasonforleaving = "Lack of access to Japanese groceries, Japanese services, etc.";
-            lackacess += 1;
-        case 4:
-            reasonforleaving = "Difficulty accessing public transit / neighborhood not walkable";
+
+    if (reasonforleaving.includes("High cost of living")){
+        highlivingcosts += 1;  
+    }
+    if (reasonforleaving.includes("Loneliness")){
+        loneliness += 1;
+    }
+    if (reasonforleaving.includes("Lack of access to Japanese groceries, Japanese services, etc.")){
+        lackaccess += 1;
+    }
+    if (reasonforleaving.includes( "Difficulty accessing public transit / neighborhood not walkable")){
             publictransit += 1;
-        case 5:
-            reasonforleaving = "Housing type no longer suitable (i.e. house too big, no elevator, etc)";
+    }     
+    if (reasonforleaving.includes( "Housing type no longer suitable (i.e. house too big, no elevator, etc)")){
             housingtype += 1;
-        case 6:
-            reasonforleaving = "Disability (physical or mental)"
+    }      
+    if (reasonforleaving.includes( "Disability (physical or mental)")){
             disability += 1;
-        case 7:
-            reasonforleaving = "Other:"
+    }      
+    if (reasonforleaving.includes( "Other:")){
             other += 1;
     }
+    surveytotal += 1;      
+ }
+    
+
+//let factorsForLeaving = ['highliving','loneliness','lackaccess']
+
+// extra credit :)
+// function generateDatafromQuestions(questionType){
+//     if (questionType == "factorsForLeaving"){
+//         factorsForLeaving.forEach(theFactor => console.log(`total % ${theFactor}: ${findpercentage(theFactor)}%`))
+//     }
+// }
+
+function addFactorDatatotable(){
+
+    let tableHeader = document.getElementById('tableColumnHeader')
+    let dataTable = document.getElementById('dataTable')
+
+    tableHeader.innerHTML = "What were your factors for leaving your previous residence?"
+
+    let contentsForThisRow = "<tr><td> High cost of living</td><td>"+highlivingcosts+"</td></tr>"
+
+    dataTable.innerHTML(contentsForThisRow)
+
+    console.log(`total count high living costs: ${highlivingcosts}`)
+    console.log(`total % high living costs: ${findpercentage(highlivingcosts)}%`)
+    console.log(`total % other costs: ${findpercentage(other)}%`) 
+    console.log(`total % disability costs: ${findpercentage(disability)}%`)
 }
 
-function adddatatotable(){
-    let 
+function findpercentage(questiontotal){
+    console.log(`this percentage = ${questiontotal/surveytotal * 100}%`)
+    return questiontotal/surveytotal * 100
 }
 
 function placeLTTMG(){
@@ -115,6 +141,7 @@ function processData(results){
         addMarker(data.lat,data.lng, data["location"], data["leavefeel"])
         incrementsurveydata(data)
     })
+    addFactorDatatotable()
 }
 
 // todo: this function to draw the lines based on the lat/lng for each marker
@@ -123,9 +150,38 @@ function drawGeodesic(){
 }
 
 function addTable(){
-    new addTable(document.getElementById('table-container').innerHTML = myTable);
+    let myTable = 
+    `
+    <table>
+        <tr>
+            <th>Reason For Leaving</th>
+            <th>Percentage of Respondents</th>
+        </tr>
+
+        <tr>
+            <td>High Living Costs</td>
+        </tr>
+        <tr><td>High Housing Costs</td></tr>
+        <tr><td>Loneliness</td></tr>
+        <tr>
+            <td>Lack of access to Japanese businesses</td>
+        </tr> 
+        <tr><td>Public Transit Difficulties</td></tr> 
+        <tr><td>Not Suitable Housing Type</td></tr> 
+            <tr> <td>Disability</td></tr>
+        <tr><td>Other</td></tr> 
+    </table>
+    `
+
+    // new addTable(document.getElementById('table-container').innerHTML = myTable);
 }
 
+function populateTable(data){
+
+}
+
+
+addTable()
 loadData(dataUrl)
 
 const Torrance = L.swoopyArrow([33.8291867, -118.3169714], [34.04, -118.27], {
