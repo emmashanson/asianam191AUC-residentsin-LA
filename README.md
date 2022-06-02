@@ -12,7 +12,7 @@ Residents in Little Tokyo, particularly Asian elders and tenants of housing proj
 2. chart-(add explanation later)
 3. Button- the buttons on the map, when press, display the name of the former hometown that the resident formerly lived, as well as their feelings about leaving thier old home. This huamizes the data point more in that there is a story behind the blue dot on the map.
 ### How it can be repurposed
-
+In the future, we would like community members to continue to add onto this website about their experiences and show the numerous stories on the same platform. Potentially in the future, we woud like nonprofit organizations in Little Tokyo such as Keiro, California based non profit organization aidig in housing to expand these housing projects outside of Little Tokyo and broaden its horizons to other areas in California, and even nationwide!  As America's immigration population continues to grow, retirement homes should not only be English catered to white families, and this project is the first micro-step to showcase that.
 ### Screenshots of our webpage
 
 ### Acknowledgements 
