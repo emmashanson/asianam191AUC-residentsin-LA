@@ -139,6 +139,7 @@ function processData(results){
     results.data.forEach(data => {
         console.log(data)
         addMarker(data.lat,data.lng, data["location"], data["leavefeel"])
+        // SWOOPY HERE
         incrementsurveydata(data)
     })
     addFactorDatatotable()
@@ -207,3 +208,7 @@ const Westwood = L.swoopyArrow([34.0631451, -118.4367551], [34.05, -118.27], {
     iconAnchor: [20, 10],
     iconSize: [20, 16]
   }).addTo(map);
+
+// let swoopyForZoomLevel10{
+
+// }
