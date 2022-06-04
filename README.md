@@ -5,7 +5,9 @@
 4. [How it can be repurposed](#repurposed)
 5. [Future Implications](#future)
 6. [Screenshots](#screenshots)
-7. [Acknowledgements](#acknowledgements)
+7. [Room for Improvement](#improvement)
+8. [Acknowledgements](#acknowledgements)
+9. [Contact](#contact)
 
 
 <a name="objective"></a>
@@ -32,11 +34,22 @@ It can be repurposed for any kind of project where user stores being highlighted
 
 <a name="future"></a>
 ### Future Implications
-In the future, we would like community members to continue to add onto this website about their experiences and show the numerous stories on the same platform. Potentially in the future, we woud like nonprofit organizations in Little Tokyo such as Keiro, California based non profit organization aidig in housing to expand these housing projects outside of Little Tokyo and broaden its horizons to other areas in California, and even nationwide!  As America's immigration population continues to grow, retirement homes should not only be English catered to white families, and this project is the first micro-step to showcase that.
+In the future, we would like community members to continue to add onto this website about their experiences and show the numerous stories on the same platform. Potentially in the future, we woud like nonprofit organizations in Little Tokyo such as Keiro, California based non profit organization aidig in housing to expand these housing projects outside of Little Tokyo and broaden its horizons to other areas in California, and even nationwide!  As America's immigration population continues to grow, retirement homes should not only be catered to English-speakers only, and this project is the first micro-step to showcase that.
 
 <a name="screenshots"></a>
 ### Screenshots of our webpage
 
+<a name="improvements"></a>
+### Room for Improvement
+-
+-
 <a name="acknowledgements"></a>
 ### Acknowledgements 
 Our group would like to give a huge thank you to our professor, Albert for his consistent help throughout this course from the office hours to picking our brains after class. Another thank you to our classmates, seeing peer surveys, websites, etc are all great ways in learning and improving our own mapplication and seeing the potential that is there!
+
+<a name="contact"></a>
+### Contact
+Here is the email address of the creators of this mapplication:
+Kristen Fu-
+Emma Hanson-emmahanson@ucla.edu
+Keri Chen-
