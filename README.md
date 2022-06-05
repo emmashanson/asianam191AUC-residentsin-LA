@@ -12,14 +12,13 @@
 
 <a name="objective"></a>
 ### Objective: What social problem is being addressed?
-Little Tokyo, one of the last-remaining historic Japantowns in the U.S., is situated in Downtown L.A.. As of 2015, 25% of the population consists of adults aged 65 years or older. Additionally, 60% of this older population is linguistically isolated— meaning that they report not speaking English “very well”— while 70% of older householders in Little Tokyo live alone. As such, retirement homes for elderly and retired aren’t always accommodating for the linguistic, cultural, and community needs of the Little Tokyo elderly population. 
+Little Tokyo, one of the last-remaining historic Japantowns in the U.S., is situated in Downtown L.A.. As of 2015, 25% of the population consists of adults aged 65 years or older. Currently, the only two Section 8 housing projects in Little Tokyo are the Little Tokyo Towers and Miyako Gardens Apartments which offer housing to qualifying low-income seniors 62 and older. 
 
-Currently, the only two Section 8 housing projects in Little Tokyo are the Little Tokyo Towers and Miyako Gardens Apartments which offer housing to qualifying low-income seniors 62 and older. For our project, we hope to map out the places and neighborhoods of origin of residents in these projects in order to visualize the displacement of low-income non-native English-speaker seniors, specifically Japanese elders in the Little Tokyo Towers and Miyako Gardens housing projects. On these markers, we will have another tab that describes the experiences of those living in these homes and the impact that these residential communities have had. 
+For our project, we hope to map out the places and neighborhoods of origin of residents in these projects in order to visualize the displacement of low-income non-native English-speaker seniors, specifically Japanese elders in the Little Tokyo Towers and Miyako Gardens housing projects. On these markers, we will have another tab that describes the experiences of those living in these homes and the impact that these residential communities have had. 
 
 <a name="enpowered"></a>
 ### Who is being empowered by your mapplication?
-Our project will benefit and empower low-income, Japanese senior citizens and their caregivers, as well as several nonprofits that provide resources and community aid to elders in Little Tokyo; Keiro, Little Tokyo Service Center (LTSC), and Little Tokyo Historical Society (LTHS). These nonprofits that work with Asian elders and tenants in the projects themselves will be empowered with a more comprehensive understanding of their communities and will be able to have their stories heard.
-Residents in Little Tokyo, particularly Asian elders and tenants of housing projects, will be empowered to share their personal experiences related to housing, which would raise awareness of issues and problems they face when it comes to housing insecurity.
+Our project will benefit and empower low-income, Japanese senior citizens and their caregivers, as well as several nonprofits that provide resources and community aid to elders in Little Tokyo. Residents in Little Tokyo, particularly Asian elders and tenants of housing projects, will be empowered to share their personal experiences related to housing, which would raise awareness of issues and problems they face when it comes to housing insecurity.
 
 
 <a name="tech"></a>
@@ -27,6 +26,16 @@ Residents in Little Tokyo, particularly Asian elders and tenants of housing proj
 1. Swoopy arrows- plugin, for swoopy arrows
 2. Papaparse- plugin, CSV parser
 3. Leaflet-interactive map plugin
+
+Languages Used:
+1. HTML/CSS
+2. Javascript
+
+Other Web Services not mentioned above:
+1. Google Forms: survey forum we used 
+2. Google Sheets: where the data was collected, later converted to a .csv file
+3. Apps script: linked to google sheets in order to find the lat/long of locations answered on the google forms, and automatically adding that information onto sheets
+4. Google Doc: where our background/outline was written, that is hyperlinked
 
 <a name="repurposed"></a>
 ### How it can be repurposed
