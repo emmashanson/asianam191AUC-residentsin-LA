@@ -272,30 +272,7 @@ function populateTable(data){
 addTable()
 loadData(dataUrl)
 
-const Torrance = L.swoopyArrow([33.8291867, -118.3169714], [34.04, -118.27], {
-    weight: 1,
-    iconAnchor: [20, 10],
-    iconSize: [20, 16]
-  }).addTo(map);
-
-const Glendale = L.swoopyArrow([34.1980641, -118.2351192], [34.08, -118.23], {
-    weight: 1,
-    iconAnchor: [20, 10],
-    iconSize: [20, 16]
-  }).addTo(map);
-
-const EastLA = L.swoopyArrow([34.0440239, -118.1854042], [34.05, -118.23], {
-    weight: 1,
-    iconAnchor: [20, 10],
-    iconSize: [20, 16]
-  }).addTo(map);
-
-const Westwood = L.swoopyArrow([34.0631451, -118.4367551], [34.05, -118.27], {
-    weight: 1,
-    iconAnchor: [20, 10],
-    iconSize: [20, 16]
-  }).addTo(map);
-
+// it'
 // let swoopyForZoomLevel10{
 
 // }
