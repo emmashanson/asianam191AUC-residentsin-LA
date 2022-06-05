@@ -12,6 +12,15 @@ let publictransit = 0;
 let housingtype = 0;
 let disability = 0;
 let other = 0;
+
+let highlivingcosts2 = 0;
+let highhousingcosts2 = 0;
+let loneliness2 = 0;
+let lackaccess2 = 0;
+let publictransit2 = 0;
+let housingtype2 = 0;
+let disability2 = 0;
+let other2 = 0;
 let surveytotal = 0;
 
 let CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -48,6 +57,9 @@ function incrementsurveydata(surveydata){
     if (reasonforleaving.includes("High cost of living")){
         highlivingcosts += 1;  
     }
+    if (reasonforleaving.includes("High housing costs")){
+        highhousingcosts += 1;
+    }
     if (reasonforleaving.includes("Loneliness")){
         loneliness += 1;
     }
@@ -66,7 +78,35 @@ function incrementsurveydata(surveydata){
     if (reasonforleaving.includes( "Other:")){
             other += 1;
     }
-    surveytotal += 1;      
+  
+    
+    let reasonformoving = surveydata["Which, if any, of the following factors affected your decision to move to LTT/Miyako Gardens?"]
+    if (reasonformoving.includes("Lower cost of living")){
+        highlivingcosts2 += 1;  
+    }
+    if (reasonformoving.includes("Lower housing costs")){
+        highhousingcosts2 += 1;
+    }
+    if (reasonformoving.includes("Cultural connection / sense of community")){
+        loneliness2 += 1;
+    }
+    if (reasonformoving.includes("Access to Japanese groceries, Japanese services etc.")){
+        lackaccess2 += 1;
+    }
+    if (reasonformoving.includes( "Access to public transit / walkable community")){
+            publictransit2 += 1;
+    }     
+    if (reasonformoving.includes( "Housing type more suitable (1-2 bedroom apartment)")){
+            housingtype2 += 1;
+    }      
+    if (reasonformoving.includes( "Better able to cope with disabilitie(s)")){
+            disability2 += 1;
+    }      
+    if (reasonformoving.includes( "Other:")){
+            other2 += 1;
+    }
+
+    surveytotal += 1; 
  }
     
 
@@ -86,9 +126,31 @@ function addFactorDatatotable(){
 
     tableHeader.innerHTML = "What were your factors for leaving your previous residence?"
 
-    let contentsForThisRow = "<tr><td> High cost of living</td><td>"+highlivingcosts+"</td></tr>"
+    let contentsForThisRow = `<tr><td> High cost of living</td><td><div> <div class="barchart" ${findpercentage(highlivingcosts)}></div>${findpercentage(highlivingcosts)}</div></td></tr>`
+    contentsForThisRow += "<tr><td> High housing costs</td><td>"+findpercentage(highhousingcosts)+"</td></tr>"
+    contentsForThisRow += "<tr><td> Loneliness</td><td>"+findpercentage(loneliness)+"</td></tr>"
+    contentsForThisRow += "<tr><td> Lack of access to Japanese groceries, Japanese services, etc.</td><td>"+findpercentage(lackaccess)+"</td></tr>"
+    contentsForThisRow += "<tr><td> Difficulty accessing public transit / neighborhood not walkable</td><td>"+findpercentage(publictransit)+"</td></tr>"
+    contentsForThisRow += "<tr><td> Housing type no longer suitable (i.e. house too big, no elevator, etc</td><td>"+findpercentage(housingtype)+"</td></tr>"
+    contentsForThisRow += "<tr><td> Disability (physical or mental)</td><td>"+findpercentage(disability)+"</td></tr>"
+    contentsForThisRow += "<tr><td> Other</td><td>"+findpercentage(other)+"</td></tr>"
 
-    dataTable.innerHTML(contentsForThisRow)
+    dataTable.innerHTML += contentsForThisRow
+
+    let tableHeader2 = document.getElementById('tableColumnHeader2')
+    let dataTable2 = document.getElementById('dataTable2')
+    tableHeader2.innerHTML = "What were your factors for moving to Little Tokyo Towers/Miyako Gardens?"
+
+    let contentsForThisRow2 = "<tr><td> Lower cost of living</td><td>"+findpercentage(highlivingcosts2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Lower housing costs</td><td>"+findpercentage(highhousingcosts2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Cultural connection / sense of community</td><td>"+findpercentage(loneliness2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Access to Japanese groceries, Japanese services etc.</td><td>"+findpercentage(lackaccess2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Access to public transit / walkable community</td><td>"+findpercentage(publictransit2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Housing type more suitable (1-2 bedroom apartment)</td><td>"+findpercentage(housingtype2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Better able to cope with disabilitie(s)</td><td>"+findpercentage(disability2)+"</td></tr>"
+    contentsForThisRow2 += "<tr><td> Other</td><td>"+findpercentage(other2)+"</td></tr>"
+
+    dataTable2.innerHTML += contentsForThisRow2
 
     console.log(`total count high living costs: ${highlivingcosts}`)
     console.log(`total % high living costs: ${findpercentage(highlivingcosts)}%`)
@@ -98,7 +160,7 @@ function addFactorDatatotable(){
 
 function findpercentage(questiontotal){
     console.log(`this percentage = ${questiontotal/surveytotal * 100}%`)
-    return questiontotal/surveytotal * 100
+    return questiontotal/surveytotal * 100 + "%"
 }
 
 function placeLTTMG(){

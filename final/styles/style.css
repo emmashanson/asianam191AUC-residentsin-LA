@@ -40,10 +40,21 @@ header{
 }
 
 table, th, td{
-    border: 1px solid;
+    border: 0px solid;
     border-collapse: collapse;
-    padding: 15px 50px;
-    margin: 20px;
+    padding: 15px 10px;
+    margin: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #F2E03F;
+    color: black;
+  }
+
+tr:hover{
+    background-color:aquamarine;
+    transition: 1s;
 }
 
 .top-header{
