@@ -88,7 +88,7 @@ function addFactorDatatotable(){
 
     let contentsForThisRow = "<tr><td> High cost of living</td><td>"+highlivingcosts+"</td></tr>"
 
-    dataTable.innerHTML(contentsForThisRow)
+    dataTable.innerHTML += contentsForThisRow
 
     console.log(`total count high living costs: ${highlivingcosts}`)
     console.log(`total % high living costs: ${findpercentage(highlivingcosts)}%`)
@@ -114,15 +114,6 @@ function placeLTTMG(){
     L.marker([LTT.lat,LTT.lng],{icon:LTTicon}).addTo(map).bindPopup(`<h2>${LTT.title}</h2>`)
 }
 
-// !!!!STILL MUST BE DONE!!!!
-// function that makes lines between previous and current residence
-// when you add a new residence on the survey, it makes a new line with that marker
-
-// 1. get markers on the map for both current and previous residence
-// 2. make a line between them
-//      a. the current residence has the same point.
-//      b. the previous residence needs to be added 
-
 const dataUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRQBjw2ziwA5er6vQq8az6tdKFe2ztPxz4CckE7OZaM9L0p7OMLnzi8QKNmsMdPZjWgJCEDQdUfOIW8/pub?output=csv"
 
 function loadData(url){
@@ -139,15 +130,49 @@ function processData(results){
     results.data.forEach(data => {
         console.log(data)
         addMarker(data.lat,data.lng, data["location"], data["leavefeel"])
-        // SWOOPY HERE
+        // look up online
+        let latLng = [data.lat,data.lng] 
+        let thisDataLineDirection = calculateLTTOffsets(latLng)
+        // will return as northwest, southwest, northeast, southeast
+        addSwoopy(data,thisDataLineDirection)
         incrementsurveydata(data)
     })
     addFactorDatatotable()
 }
 
+function calculateLTTOffsets(latLng){
+// array of latlngs latlng = [34,-118]
+
+    let differenceBetweenLat = LTT.lat - latLng[0]
+    let differenceBetweenLng = LTT.lng - latLng[1]
+
+    // is difference between lat and lng negative or positive?
+    if (differenceBetweenLat < 0 && differenceBetweenLng < 0){
+        // both negative
+        return "SouthWest"
+    }
+}
+
+// step1 - load the data to draw the lines from
 // todo: this function to draw the lines based on the lat/lng for each marker
-function drawGeodesic(){
-    console.log('drawing geodesic')
+function addSwoopy(startingData,directionOffset){
+    let offSet = [0,0]
+    if (directionOffset == "SouthWest"){
+        // draw a line from the marker to the LTT
+        // add the for SouthWest
+        offSet = [10,10]
+        }
+    // change the offset based on the direction
+    let shiftedLTTlat = LTT.lat + offSet[0]
+    let shiftedLTTlng = LTT.lng + offSet[1]
+    
+    // addTo Layer so you can remove it layter
+    L.swoopyArrow([startingData.lat,startingData.lng], [shiftedLTTlat,shiftedLTTlng], {
+            weight: 1,
+            iconAnchor: [20, 10],
+            iconSize: [20, 16]
+          }).addTo(map);
+    console.log('drawing swoopies')
 }
 
 function addTable(){
@@ -212,3 +237,5 @@ const Westwood = L.swoopyArrow([34.0631451, -118.4367551], [34.05, -118.27], {
 // let swoopyForZoomLevel10{
 
 // }
+
+//
