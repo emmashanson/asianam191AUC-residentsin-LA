@@ -28,14 +28,14 @@ Our project will benefit and empower low-income, Japanese senior citizens and th
 3. Leaflet-interactive map plugin
 
 Languages Used:
--HTML/CSS
--Javascript
+1. HTML/CSS
+2. Javascript
 
 Other Web Services not mentioned above:
--Google Forms: survey forum we used 
--Google Sheets: where the data was collected, later converted to a .csv file
--Apps script: linked to google sheets in order to find the lat/long of locations answered on the google forms, and automatically adding that information onto sheets
--Google Doc: where our background/outline was written, that is hyperlinked
+1. Google Forms: survey forum we used 
+2. Google Sheets: where the data was collected, later converted to a .csv file
+3. Apps script: linked to google sheets in order to find the lat/long of locations answered on the google forms, and automatically adding that information onto sheets
+4. Google Doc: where our background/outline was written, that is hyperlinked
 
 <a name="repurposed"></a>
 ### How it can be repurposed
