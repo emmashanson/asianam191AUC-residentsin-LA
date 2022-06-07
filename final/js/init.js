@@ -324,6 +324,18 @@ function calculateLTTOffsets(latLng){
         // both negative
         return "SouthWest"
     }
+    if (differenceBetweenLat < 0 && differenceBetweenLng > 0){
+        //neg, pos
+        return "NorthWest"
+    }
+    if (differenceBetweenLat > 0 && differenceBetweenLng > 0){
+        //neg, neg
+        return "NorthEast"
+    }
+    if (differenceBetweenLat > 0 && differenceBetweenLng < 0){
+        //pos, neg
+        return "SouthEast"
+    }
 }
 
 // step1 - load the data to draw the lines from
@@ -333,13 +345,22 @@ function addSwoopy(startingData,directionOffset){
     if (directionOffset == "SouthWest"){
         // draw a line from the marker to the LTT
         // add the for SouthWest
-        offSet = [10,10]
+        offSet = [-10, -10]
         }
+    if (directionOffset == "NorthWest"){
+        offset = [-10, 10]
+    }
+    if (directionOffset == "NorthEast"){
+        offset = [10, 10]
+    }
+    if (directionOffset == "SouthEast"){
+        offset = [10, -10]
+    }
     // change the offset based on the direction
     let shiftedLTTlat = LTT.lat + offSet[0]
     let shiftedLTTlng = LTT.lng + offSet[1]
     
-    // addTo Layer so you can remove it layter
+    // addTo Layer so you can remove it later
     L.swoopyArrow([startingData.lat,startingData.lng], [shiftedLTTlat,shiftedLTTlng], {
             weight: 1,
             iconAnchor: [20, 10],
@@ -383,7 +404,6 @@ function populateTable(data){
 addTable()
 loadData(dataUrl)
 
-// it'
 // let swoopyForZoomLevel10{
 
 // }
