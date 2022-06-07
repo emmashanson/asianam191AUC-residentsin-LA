@@ -37,19 +37,24 @@ const LTT = {
     title:"Little Tokyo Towers and Miyako Gardens", 
     iconUrl:""};
 
-
 // create a function to add markers
-function addMarker(lat,lng,title,message){
-    console.log(message)
-    L.circleMarker([lat,lng],
+function addMarker(lat,lng,title,message,targetlayer){
+    console.log(targetlayer)
+    targetlayer.addLayer(L.circleMarker([lat,lng],
         {
             radius: 5,
             weight: 2,
             opacity: 1000,
             fillOpacity: 100,
-        }).addTo(map).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`)
+        })).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`)
     return message
 }
+
+// 🐧🐧🐧🐧🐧🐧🐧do this for each question you want to filter with🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧
+// let lowercostoflivingLayer = L.layerGroup();
+
+// 
+// 🐧🐧🐧🐧🐧🐧🐧🐧🐧
 
 function incrementsurveydata(surveydata){
     let reasonforleaving = surveydata["Which, if any, of the following factors affected your decision to leave your previous residence?"]
@@ -118,6 +123,102 @@ function incrementsurveydata(surveydata){
 //         factorsForLeaving.forEach(theFactor => console.log(`total % ${theFactor}: ${findpercentage(theFactor)}%`))
 //     }
 // }
+function filterMap(filter,questionNumber){
+    //console.log("hello kristen")
+    let theQuestionFilter
+
+    if (questionNumber == 1){
+        // 🐧🐧🐧🐧🐧🐧🐧do this for each question you want to filter with🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧
+        switch(filter){
+            case "highcostliving":
+                //console.log("highcostliving was clicked")
+                theQuestionFilter = "High cost of living";
+            case "highcosthousing":
+                theQuestionFilter = "High housing costs";
+            case "lonely":
+                theQuestionFilter = "Loneliness";
+            case "noaccess":
+                theQuestionFilter = "Lack of access to Japanese groceries, Japanese services, etc.";
+            case "difficulttransit":
+                theQuestionFilter = "Difficulty accessing public transit / neighborhood not walkable";
+            case "nosuitablehousing":
+                theQuestionFilter = "Housing type no longer suitable (i.e. house too big, no elevator, etc)";
+            case "disabilities":
+                theQuestionFilter = "Disability (physical or mental)"
+            case "oth":
+                theQuestionFilter = "Other:"
+            
+        }
+        // 🐧🐧🐧🐧🐧🐧🐧do this for each question you want to filter with🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧
+    }
+    if (questionNumber == 2){
+        // 🐧🐧🐧🐧🐧🐧🐧do this for each second question you want to filter with🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧
+        switch(filter){
+            case "lowcostliving":
+                //console.log("highcostliving was clicked")
+                theQuestionFilter = "Lower cost of living";
+            case "lowcosthousing":
+                theQuestionFilter = "Lower housing costs";
+            case "notlonely":
+                theQuestionFilter = "Cultural connection / sense of community";
+            case "goodaccess":
+                theQuestionFilter = "Access to Japanese groceries, Japanese services etc.";
+            case "goodtransit":
+                theQuestionFilter = "Access to public transit / walkable community";
+            case "suitablehousing":
+                theQuestionFilter = "Housing type more suitable (1-2 bedroom apartment)";
+            case "disabilitysupport":
+                theQuestionFilter = "Better able to cope with disabilitie(s)"
+            case "othe":
+                theQuestionFilter = "Other:"
+            
+        }
+    }
+
+    filterMapData(theQuestionFilter,1)
+    filterMapData(theQuestionFilter,2)
+}
+
+function filterMapData(textToFilterOut,questionNumber){
+    // clear the templayer before adding it to map
+    tempLayer.clearLayers();
+
+
+    let theDataQuestion
+    if (questionNumber == 1){
+        theDataQuestion = 'Which, if any, of the following factors affected your decision to leave your previous residence?'
+    }
+    if (questionNumber == 2){
+        // EXACT TEXT FOR QUESTION TO FILTER
+        theDataQuestion = 'Which, if any, of the following factors affected your decision to move to LTT/Miyako Gardens?'
+    }
+    // loop through the data and add the markers to the templayer
+    allData.forEach(data => {
+        if (theDataQuestion.includes(textToFilterOut)){
+            addMarker(data.lat,data.lng,data.title,data.message,tempLayer)
+        }
+    })
+
+    // add tempLayer to map
+    tempLayer.addTo(map)
+
+}
+
+function clearMap(){
+    // map.removeLayer(LTT)
+    // map.remove()
+    console.log('hold up, will do this later')
+}
+
+function showChart1(){
+    document.getElementById("dataTable2").style.display = "none";
+    document.getElementById("dataTable").style.display = "block";
+}
+
+function showChart2(){
+    document.getElementById("dataTable").style.display = "none";
+    document.getElementById("dataTable2").style.display = "block";
+}
 
 function addFactorDatatotable(){
 
@@ -125,15 +226,18 @@ function addFactorDatatotable(){
     let dataTable = document.getElementById('dataTable')
 
     tableHeader.innerHTML = "What were your factors for leaving your previous residence?"
-
-    let contentsForThisRow = `<tr><td> High cost of living</td><td><div> <div class="barchart" ${findpercentage(highlivingcosts)}></div>${findpercentage(highlivingcosts)}</div></td></tr>`
-    contentsForThisRow += "<tr><td> High housing costs</td><td>"+findpercentage(highhousingcosts)+"</td></tr>"
-    contentsForThisRow += "<tr><td> Loneliness</td><td>"+findpercentage(loneliness)+"</td></tr>"
-    contentsForThisRow += "<tr><td> Lack of access to Japanese groceries, Japanese services, etc.</td><td>"+findpercentage(lackaccess)+"</td></tr>"
-    contentsForThisRow += "<tr><td> Difficulty accessing public transit / neighborhood not walkable</td><td>"+findpercentage(publictransit)+"</td></tr>"
-    contentsForThisRow += "<tr><td> Housing type no longer suitable (i.e. house too big, no elevator, etc</td><td>"+findpercentage(housingtype)+"</td></tr>"
-    contentsForThisRow += "<tr><td> Disability (physical or mental)</td><td>"+findpercentage(disability)+"</td></tr>"
-    contentsForThisRow += "<tr><td> Other</td><td>"+findpercentage(other)+"</td></tr>"
+    let testBarChart = `<div class="chartcontainer"><div class="charttotal"></div><div class="barchart" style="width:${findpercentage(highlivingcosts)}"> hello</div></div>`
+    // dataTable.innerHTML += testBarChart
+    // 🐧🐧🐧🐧🐧🐧🐧 add the filterMap function for each row with🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧
+    // <tr onclick="filterMap('highcostliving',1)>
+    let contentsForThisRow = `<tr onclick="filterMap('highcostliving',1)" class="niceRow"><td> High cost of living</td><td><div class="overallchart"> <div class="chartText">${findpercentage(highlivingcosts)}</div><div class="barchart" style="width:${findpercentage(highlivingcosts)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('highcosthousing',1)" class="niceRow"><td> High housing costs</td><td><div class="overallchart"><div class="chartText">${findpercentage(highhousingcosts)}</div><div class="barchart" style="width:${findpercentage(highhousingcosts)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('lonely',1)" class="niceRow"><td> Loneliness</td><td> <div class="overallchart"><div class="chartText">${findpercentage(loneliness)}</div><div class="barchart" style="width:${findpercentage(loneliness)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('noaccess',1)" class="niceRow"> <td> Lack of access to Japanese groceries, Japanese services, etc.</td><td><div class="overallchart"><div class="chartText">${findpercentage(lackaccess)}</div><div class="barchart" style="width:${findpercentage(lackaccess)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('difficulttransit',1)" class="niceRow"><td> Difficulty accessing public transit / neighborhood not walkable</td><td><div class="overallchart"><div class="chartText">${findpercentage(publictransit)}</div><div class="barchart" style="width:${findpercentage(publictransit)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('nosuitablehousing',1)" class="niceRow"><td> Housing type no longer suitable (i.e. house too big, no elevator, etc</td><td><div class="overallchart"><div class="chartText">${findpercentage(housingtype)}</div><div class="barchart" style="width:${findpercentage(housingtype)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('disabilities',1)" class="niceRow"><td> Disability (physical or mental)</td><td><div class="overallchart"> <div class="chartText">${findpercentage(disability)}</div><div class="barchart" style="width:${findpercentage(disability)}"></div></div></td></tr>`
+    contentsForThisRow += `<tr onclick="filterMap('oth',1)" class="niceRow"><td> Other</td><td><div class="overallchart"> <div class="chartText">${findpercentage(other)}</div><div class="barchart" style="width:${findpercentage(other)}"></div></div></td></tr>`
 
     dataTable.innerHTML += contentsForThisRow
 
@@ -141,14 +245,14 @@ function addFactorDatatotable(){
     let dataTable2 = document.getElementById('dataTable2')
     tableHeader2.innerHTML = "What were your factors for moving to Little Tokyo Towers/Miyako Gardens?"
 
-    let contentsForThisRow2 = "<tr><td> Lower cost of living</td><td>"+findpercentage(highlivingcosts2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Lower housing costs</td><td>"+findpercentage(highhousingcosts2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Cultural connection / sense of community</td><td>"+findpercentage(loneliness2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Access to Japanese groceries, Japanese services etc.</td><td>"+findpercentage(lackaccess2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Access to public transit / walkable community</td><td>"+findpercentage(publictransit2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Housing type more suitable (1-2 bedroom apartment)</td><td>"+findpercentage(housingtype2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Better able to cope with disabilitie(s)</td><td>"+findpercentage(disability2)+"</td></tr>"
-    contentsForThisRow2 += "<tr><td> Other</td><td>"+findpercentage(other2)+"</td></tr>"
+    let contentsForThisRow2 = `<tr onclick="filterMap('lowcostliving',2)" class="niceRow"><td> Lower cost of living</td><td><div class="overallchart"> <div class="chartText">${findpercentage(highlivingcosts2)}</div><div class="barchart" style="width:${findpercentage(highlivingcosts2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('lowcosthousing',2)" class="niceRow"><td> Lower housing costs</td><td><div class="overallchart"><div class="chartText">${findpercentage(highhousingcosts2)}</div><div class="barchart" style="width:${findpercentage(highhousingcosts2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('notlonely',2)" class="niceRow"><td> Cultural connection / sense of community</td><td> <div class="overallchart"><div class="chartText">${findpercentage(loneliness2)}</div><div class="barchart" style="width:${findpercentage(loneliness2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('goodaccess',2)" class="niceRow"> <td> Access to Japanese groceries, Japanese services etc.</td><td><div class="overallchart"><div class="chartText">${findpercentage(lackaccess2)}</div><div class="barchart" style="width:${findpercentage(lackaccess2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('goodtransit',2)" class="niceRow"><td> Access to public transit / walkable community</td><td><div class="overallchart"><div class="chartText">${findpercentage(publictransit2)}</div><div class="barchart" style="width:${findpercentage(publictransit2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('suitablehousing',2)" class="niceRow"><td> Housing type more suitable (1-2 bedroom apartment)</td><td><div class="overallchart"><div class="chartText">${findpercentage(housingtype2)}</div><div class="barchart" style="width:${findpercentage(housingtype2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('disabilitysupport',2)" class="niceRow"><td> Better able to cope with disabilitie(s)</td><td><div class="overallchart"> <div class="chartText">${findpercentage(disability2)}</div><div class="barchart" style="width:${findpercentage(disability2)}"></div></div></td></tr>`
+    contentsForThisRow2 += `<tr onclick="filterMap('othe',2)" class="niceRow"><td> Other</td><td><div class="overallchart"> <div class="chartText">${findpercentage(other2)}</div><div class="barchart" style="width:${findpercentage(other2)}"></div></div></td></tr>`
 
     dataTable2.innerHTML += contentsForThisRow2
 
@@ -186,12 +290,16 @@ function loadData(url){
     })
 }
 
+let tempLayer = L.layerGroup()
+let allData = []
+
 function processData(results){
     console.log(results)
     placeLTTMG()
     results.data.forEach(data => {
         console.log(data)
-        addMarker(data.lat,data.lng, data["location"], data["leavefeel"])
+        addMarker(data.lat,data.lng, data["location"], data["leavefeel"],tempLayer)
+        allData.push(data)
         // look up online
         let latLng = [data.lat,data.lng] 
         let thisDataLineDirection = calculateLTTOffsets(latLng)
@@ -200,6 +308,9 @@ function processData(results){
         incrementsurveydata(data)
     })
     addFactorDatatotable()
+
+    // allLayers = L.featureGroup([lowercostoflivingLayer,lowerhousingcostsLayer,lonelinessLayer,lackaccessLayer,publictransitLayer,housingtypeLayer,disabilityLayer,otherLayer,lowercostoflivingLayer2,lowerhousingcostsLayer2,lonelinessLayer2,lackaccessLayer2,publictransitLayer2,housingtypeLayer2,disabilityLayer2,otherLayer2]);
+    tempLayer.addTo(map)
 }
 
 function calculateLTTOffsets(latLng){
