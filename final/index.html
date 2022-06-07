@@ -49,14 +49,25 @@
         </header>
 
         <div class="main">
+            
             <div id="the_map"></div>
-                <div id="table-container"> 
+           
+        
+                <div id="table-container">
+                    <div id="buttons">
+
+                        <div id="table1button">
+                            <button type="table1" onclick="showChart1()" style="background: aquamarine;border: none;padding: 10px;width:90%;cursor:pointer;justify-self:center">Factors for Leaving</button>
+                        </div>
+                        <div id="table2button">
+                            <button type="table2" onclick="showChart2()" style="background: aquamarine;border: none;padding: 10px;width:90%;cursor:pointer;justify-self:center">Factors for Moving</button>
+                        </div>
+                       </div>
+
                     <table id="dataTable">
                         <tr>
                             <th id="tableColumnHeader"></th>
                             <th>Percentage of Respondents</th>
-=======
-    
                         </tr>
                     </table>
                     <table id="dataTable2">

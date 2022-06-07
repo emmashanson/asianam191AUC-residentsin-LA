@@ -26,11 +26,19 @@ header{
     display: grid;
 }
 
+#buttons{
+    grid-area: buttons;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-areas: "table1button table2button";
+  
+}
+
 #contents{
     grid-area: content;
     display: grid;
     grid-template-rows: 1fr 3fr; 
-    grid-template-areas: "survey" "description" "backg" ;
+    grid-template-areas: "description" "backg" ;
     justify-self: center;
 }
 
@@ -76,4 +84,30 @@ tr:hover{
 
 a{
     text-decoration: none;
+}
+
+/* the progress of the bar */
+.barchart{
+    background-color: #0f976c;
+    text-align: center;
+}
+
+/* total of the bar */
+.overallchart{
+    border: 2px solid rgb(206, 206, 206);
+    background-color: #9ef1d7;
+    border-radius: 10px;
+    overflow: hidden;
+    display: grid;
+    height: 20px;
+  }
+
+.chartText{
+    position: absolute;
+    text-align: center;
+    width: 15%;
+}
+  
+.niceRow{
+    cursor: pointer;
 }
