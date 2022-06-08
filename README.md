@@ -47,7 +47,7 @@ In the future, we would like community members to continue to add onto this webs
 
 <a name="screenshots"></a>
 ### Screenshots of our webpage
-<img width="942" alt="image" src="https://user-images.githubusercontent.com/73042050/172539145-1f8a1cea-a348-4e80-b370-680cc17c0378.png">
+<img width="944" alt="image" src="https://user-images.githubusercontent.com/73042050/172539230-5c5a74d1-9e34-4c70-8d45-bce65ccc81ce.png">
 Overall screenshot of our home page
 
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/73042050/172538077-bf81861f-a70d-4e77-bd31-22e913b694d2.png">
