@@ -192,13 +192,15 @@ function filterMap(filter,questionNumber){
     }
 
     filterMapData(theQuestionFilter,questionNumber)
+    refreshSwoopies()
 }
+
 let currentData = []
 
 function filterMapData(textToFilterOut,questionNumber){
     // clear the templayer before adding it to map
     tempLayer.clearLayers();
-
+    tempData = [];
     // console.log("hello kristen: 🐧🐧🐧🐧🐧🐧🐧🐧" + textToFilterOut)
 
     let theDataQuestion
@@ -335,7 +337,7 @@ function processData(results){
     placeLTTMG()
     results.data.forEach(data => {
         console.log(data)
-        addEverythingToMap(data)
+        addEverythingToMapInitially(data)
         incrementsurveydata(data)
     })
     addFactorDatatotable()
@@ -347,7 +349,7 @@ function processData(results){
     swoopyLayer.addTo(map)
 }
 
-function addEverythingToMap(data){
+function addEverythingToMapInitially(data){
     
     addMarker(data.lat,data.lng, data["location"], data["leavefeel"],tempLayer)
     allData.push(data)
@@ -391,7 +393,7 @@ function refreshSwoopies(){
     console.log('refresh swoopies')
     swoopyLayer.clearLayers()
     tempData.forEach(data => {
-        console.log('tempdatas data:')
+        console.log('currentData data:')
         console.log(data)
         let latLng = [data.lat,data.lng] 
         let thisDataLineDirection = calculateLTTOffsets(latLng)
