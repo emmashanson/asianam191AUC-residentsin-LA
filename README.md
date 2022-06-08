@@ -47,10 +47,13 @@ In the future, we would like community members to continue to add onto this webs
 
 <a name="screenshots"></a>
 ### Screenshots of our webpage
+<img width="942" alt="image" src="https://user-images.githubusercontent.com/73042050/172539145-1f8a1cea-a348-4e80-b370-680cc17c0378.png">
+Overall screenshot of our home page
+
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/73042050/172538077-bf81861f-a70d-4e77-bd31-22e913b694d2.png">
 This is a screenshot of our chart, which is unique in that it autofilters the map with the percentage of respondants for each factor that was a push/pull factor. In addition, having a percentage bar is user friendly while displaying information in terms of how often it was selected.
 
-<img width="468" alt="image" src="https://user-images.githubusercontent.com/73042050/172538765-feffb919-d237-4980-b4e5-16dd92ccc895.png">
+<img width="465" alt="image" src="https://user-images.githubusercontent.com/73042050/172539016-4f27c27b-81ae-411e-b1b0-76e8fc1cd9ec.png">
 This is a screenshot of our map, which contains swoopy arrows.  Swoopy arrows tell the story of there each user came from and their story of coming to Little Tokyo
 
 <a name="improvements"></a>
