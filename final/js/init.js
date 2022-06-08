@@ -208,15 +208,24 @@ function filterMapData(textToFilterOut,questionNumber){
     if (questionNumber == 2){
         // EXACT TEXT FOR QUESTION TO FILTER
         theDataQuestion = 'Which, if any, of the following factors affected your decision to move to LTT/Miyako Gardens?'
+
     }
 
     // loop through the data and add the markers to the templayer
     allData.forEach(data => {
+        let theQuestionResponse
+        if (questionNumber == 1){
+            theQuestionResponse = data['Which, if any, of the following factors affected your decision to leave your previous residence?']
+        }
+        if (questionNumber == 2){
+            theQuestionResponse = data['Which, if any, of the following factors affected your decision to move to LTT/Miyako Gardens?']
+        }
 
         console.log('allData data')
         console.log(data)
+        
         if (data[theDataQuestion].includes(textToFilterOut)){
-            addMarker(data.lat,data.lng,data.title,data.message,tempLayer)
+            addMarker(data.lat,data.lng,data['location'],theQuestionResponse,tempLayer)
 
             // tempData list
             //bug: data is not being added to temp data

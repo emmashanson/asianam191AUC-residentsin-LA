@@ -116,3 +116,8 @@ a{
 .leaflet-control-zoom{
     display: none;
 }
+
+#dataTable2{
+    display: none;
+}
+
