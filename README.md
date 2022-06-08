@@ -47,10 +47,11 @@ In the future, we would like community members to continue to add onto this webs
 
 <a name="screenshots"></a>
 ### Screenshots of our webpage
-
+<img width="445" alt="image" src="https://user-images.githubusercontent.com/73042050/172538077-bf81861f-a70d-4e77-bd31-22e913b694d2.png">
+This is a screenshot of our chart, which is unique in that it autofilters the map with the percentage of respondants for each factor that was a push/pull factor. In addition, having a percentage bar is user friendly while displaying information in terms of how often it was selected.
 <a name="improvements"></a>
 ### Room for Improvement
-1. Optimize the code, especially for charting and swoopy arrows since it can be slow at times, overall simplifying the process down
+1. Optimize the code, especially or charting and swoopy arrows since it can be slow at times, overall simplifying the process down
 2. Further improving language accessability within all areas of our project
 <a name="acknowledgements"></a>
 ### Acknowledgements 
