@@ -59,6 +59,6 @@ Our group would like to give a huge thank you to our professor, Albert for his c
 <a name="contact"></a>
 ### Contact
 Here is the email address of the creators of this mapplication:
-1. Kristen Fu-kris10fu@g.ucla.edu
-2. Emma Hanson-emmahanson@ucla.edu
-3. Keri Chen-
+1. Kristen Fu - kris10fu@g.ucla.edu
+2. Emma Hanson - emmahanson@ucla.edu
+3. Keri Chen - kerichen@g.ucla.edu
