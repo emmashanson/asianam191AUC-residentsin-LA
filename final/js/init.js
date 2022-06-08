@@ -43,13 +43,12 @@ const LTT = {
 // create a function to add markers
 function addMarker(lat,lng,title,message,targetlayer){
     console.log(targetlayer)
-    targetlayer.addLayer(L.circleMarker([lat,lng],
-        {
+    targetlayer.addLayer(L.circleMarker([lat,lng],{
             radius: 5,
             weight: 2,
             opacity: 1000,
             fillOpacity: 100,
-        })).addTo(map).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`)
+        }).bindPopup(`<h2>${title}</h2> <h3>${message}</h3>`))
     return message
 }
 
@@ -127,7 +126,7 @@ function incrementsurveydata(surveydata){
 //     }
 // }
 function filterMap(filter,questionNumber){
-    //console.log("hello kristen")
+    // console.log("hello kristen: " + filter)
     let theQuestionFilter
 
     if (questionNumber == 1){
@@ -136,21 +135,28 @@ function filterMap(filter,questionNumber){
             case "highcostliving":
                 //console.log("highcostliving was clicked")
                 theQuestionFilter = "High cost of living";
+                break;
             case "highcosthousing":
                 theQuestionFilter = "High housing costs";
+                break;
             case "lonely":
                 theQuestionFilter = "Loneliness";
+                break;
             case "noaccess":
                 theQuestionFilter = "Lack of access to Japanese groceries, Japanese services, etc.";
+                break;
             case "difficulttransit":
                 theQuestionFilter = "Difficulty accessing public transit / neighborhood not walkable";
+                break;
             case "nosuitablehousing":
                 theQuestionFilter = "Housing type no longer suitable (i.e. house too big, no elevator, etc)";
+                break;
             case "disabilities":
                 theQuestionFilter = "Disability (physical or mental)"
+                break;
             case "oth":
                 theQuestionFilter = "Other:"
-            
+                break;
         }
         // 🐧🐧🐧🐧🐧🐧🐧do this for each question you want to filter with🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧
     }
@@ -160,34 +166,40 @@ function filterMap(filter,questionNumber){
             case "lowcostliving":
                 //console.log("highcostliving was clicked")
                 theQuestionFilter = "Lower cost of living";
+                break;
             case "lowcosthousing":
                 theQuestionFilter = "Lower housing costs";
+                break;
             case "notlonely":
                 theQuestionFilter = "Cultural connection / sense of community";
+                break;
             case "goodaccess":
                 theQuestionFilter = "Access to Japanese groceries, Japanese services etc.";
+                break;
             case "goodtransit":
                 theQuestionFilter = "Access to public transit / walkable community";
+                break;
             case "suitablehousing":
                 theQuestionFilter = "Housing type more suitable (1-2 bedroom apartment)";
+                break;
             case "disabilitysupport":
                 theQuestionFilter = "Better able to cope with disabilitie(s)"
+                break;
             case "othe":
                 theQuestionFilter = "Other:"
-            
+                break;
         }
     }
 
-    filterMapData(theQuestionFilter,1)
-    filterMapData(theQuestionFilter,2)
+    filterMapData(theQuestionFilter,questionNumber)
 }
-
-
+let currentData = []
 
 function filterMapData(textToFilterOut,questionNumber){
     // clear the templayer before adding it to map
     tempLayer.clearLayers();
 
+    // console.log("hello kristen: 🐧🐧🐧🐧🐧🐧🐧🐧" + textToFilterOut)
 
     let theDataQuestion
     if (questionNumber == 1){
@@ -197,8 +209,10 @@ function filterMapData(textToFilterOut,questionNumber){
         // EXACT TEXT FOR QUESTION TO FILTER
         theDataQuestion = 'Which, if any, of the following factors affected your decision to move to LTT/Miyako Gardens?'
     }
+
     // loop through the data and add the markers to the templayer
     allData.forEach(data => {
+
         console.log('allData data')
         console.log(data)
         if (data[theDataQuestion].includes(textToFilterOut)){
@@ -211,7 +225,8 @@ function filterMapData(textToFilterOut,questionNumber){
             console.log(data)
         }
     })
-
+    console.log("🐧🐧🐧🐧")
+    console.log(currentData)
     // add tempLayer to map
     tempLayer.addTo(map)
 
