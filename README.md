@@ -50,7 +50,7 @@ In the future, we would like community members to continue to add onto this webs
 
 <a name="improvements"></a>
 ### Room for Improvement
-1. Optimize the code, especially or charting and swoopy arrows since it can be slow at times, overall simplifying the process down
+1. Optimize the code, especially for charting and swoopy arrows since it can be slow at times, overall simplifying the process down
 2. Further improving language accessability within all areas of our project
 <a name="acknowledgements"></a>
 ### Acknowledgements 
