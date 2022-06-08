@@ -34,6 +34,16 @@ header{
   
 }
 
+#table1button:hover{
+    background-color: aquamarine;
+    color:snow
+}
+
+#table2button:hover{
+    background-color: aquamarine;
+    color:snow
+}
+
 #contents{
     grid-area: content;
     display: grid;
@@ -62,7 +72,7 @@ th {
 
 tr:hover{
     background-color:aquamarine;
-    transition: 1s;
+    transition: .5s;
 }
 
 .top-header{
@@ -71,7 +81,7 @@ tr:hover{
 
 .description{
     background-color:#F2E03F;
-    padding: 5px 10px;
+    padding: 5px 15px;
 }
 
 #pages{
@@ -120,4 +130,6 @@ a{
 #dataTable2{
     display: none;
 }
+
+
 

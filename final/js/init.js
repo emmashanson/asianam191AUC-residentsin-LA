@@ -215,10 +215,10 @@ function filterMapData(textToFilterOut,questionNumber){
     allData.forEach(data => {
         let theQuestionResponse
         if (questionNumber == 1){
-            theQuestionResponse = data['Which, if any, of the following factors affected your decision to leave your previous residence?']
+            theQuestionResponse = data["leavefeel"]
         }
         if (questionNumber == 2){
-            theQuestionResponse = data['Which, if any, of the following factors affected your decision to move to LTT/Miyako Gardens?']
+            theQuestionResponse = data["How did you feel about coming to live in your current residence at LTT or Miyako Gardens?"]
         }
 
         console.log('allData data')
