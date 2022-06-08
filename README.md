@@ -49,6 +49,10 @@ In the future, we would like community members to continue to add onto this webs
 ### Screenshots of our webpage
 <img width="445" alt="image" src="https://user-images.githubusercontent.com/73042050/172538077-bf81861f-a70d-4e77-bd31-22e913b694d2.png">
 This is a screenshot of our chart, which is unique in that it autofilters the map with the percentage of respondants for each factor that was a push/pull factor. In addition, having a percentage bar is user friendly while displaying information in terms of how often it was selected.
+
+<img width="468" alt="image" src="https://user-images.githubusercontent.com/73042050/172538765-feffb919-d237-4980-b4e5-16dd92ccc895.png">
+This is a screenshot of our map, which contains swoopy arrows.  Swoopy arrows tell the story of there each user came from and their story of coming to Little Tokyo
+
 <a name="improvements"></a>
 ### Room for Improvement
 1. Optimize the code, especially or charting and swoopy arrows since it can be slow at times, overall simplifying the process down
