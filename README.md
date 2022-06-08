@@ -50,8 +50,8 @@ In the future, we would like community members to continue to add onto this webs
 
 <a name="improvements"></a>
 ### Room for Improvement
--Optimize the code, especially or charting and swoopy arrows since it can be slow at times, overall simplifying the process down
--Further improving language accessability within all areas of our project
+1. Optimize the code, especially or charting and swoopy arrows since it can be slow at times, overall simplifying the process down
+2. Further improving language accessability within all areas of our project
 <a name="acknowledgements"></a>
 ### Acknowledgements 
 Our group would like to give a huge thank you to our professor, Albert for his consistent help throughout this course from the office hours to picking our brains after class. Another thank you to our classmates, seeing peer surveys, websites, etc are all great ways in learning and improving our own mapplication and seeing the potential that is there!
