@@ -2,7 +2,8 @@
 let mapOptions = {'center': [34.0709,-118.444],'zoom':10}
 
 // use the variables
-const map = L.map('the_map').setView(mapOptions.center, mapOptions.zoom);
+const map = L.map('the_map',{minZoom:10,maxZoom:10}).setView(mapOptions.center, mapOptions.zoom);
+
 
 let highlivingcosts = 0;
 let highhousingcosts = 0;
@@ -28,6 +29,8 @@ let CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/
 	subdomains: 'abcd',
 	maxZoom: 20
 });
+
+let tempData = []
 
 CartoDB_Positron.addTo(map);
 
@@ -191,6 +194,7 @@ function filterMap(filter,questionNumber){
     filterMapData(theQuestionFilter,questionNumber)
 }
 let currentData = []
+
 function filterMapData(textToFilterOut,questionNumber){
     // clear the templayer before adding it to map
     tempLayer.clearLayers();
@@ -208,9 +212,17 @@ function filterMapData(textToFilterOut,questionNumber){
 
     // loop through the data and add the markers to the templayer
     allData.forEach(data => {
+
+        console.log('allData data')
+        console.log(data)
         if (data[theDataQuestion].includes(textToFilterOut)){
-            currentData.push(data)
             addMarker(data.lat,data.lng,data.title,data.message,tempLayer)
+
+            // tempData list
+            //bug: data is not being added to temp data
+            tempData.push(data)
+            console.log('adding data to temp data!!!!!!!!!!!!!!!')
+            console.log(data)
         }
     })
     console.log("🐧🐧🐧🐧")
@@ -314,19 +326,27 @@ function processData(results){
     placeLTTMG()
     results.data.forEach(data => {
         console.log(data)
-        addMarker(data.lat,data.lng, data["location"], data["leavefeel"],tempLayer)
-        allData.push(data)
-        // look up online
-        let latLng = [data.lat,data.lng] 
-        let thisDataLineDirection = calculateLTTOffsets(latLng)
-        // will return as northwest, southwest, northeast, southeast
-        addSwoopy(data,thisDataLineDirection)
+        addEverythingToMap(data)
         incrementsurveydata(data)
     })
     addFactorDatatotable()
 
     // allLayers = L.featureGroup([lowercostoflivingLayer,lowerhousingcostsLayer,lonelinessLayer,lackaccessLayer,publictransitLayer,housingtypeLayer,disabilityLayer,otherLayer,lowercostoflivingLayer2,lowerhousingcostsLayer2,lonelinessLayer2,lackaccessLayer2,publictransitLayer2,housingtypeLayer2,disabilityLayer2,otherLayer2]);
+    //tempLayer is the points
     tempLayer.addTo(map)
+
+    swoopyLayer.addTo(map)
+}
+
+function addEverythingToMap(data){
+    
+    addMarker(data.lat,data.lng, data["location"], data["leavefeel"],tempLayer)
+    allData.push(data)
+    // look up online
+    let latLng = [data.lat,data.lng] 
+    let thisDataLineDirection = calculateLTTOffsets(latLng)
+    // will return as northwest, southwest, northeast, southeast
+    addSwoopy(data,thisDataLineDirection)
 }
 
 function calculateLTTOffsets(latLng){
@@ -336,52 +356,72 @@ function calculateLTTOffsets(latLng){
     let differenceBetweenLng = LTT.lng - latLng[1]
 
     // is difference between lat and lng negative or positive?
-    if (differenceBetweenLat < 0 && differenceBetweenLng < 0){
+    if (differenceBetweenLat > 0 && differenceBetweenLng > 0){
         // both negative
         return "SouthWest"
     }
-    if (differenceBetweenLat < 0 && differenceBetweenLng > 0){
+    if (differenceBetweenLat > 0 && differenceBetweenLng < 0){
         //neg, pos
         return "NorthWest"
     }
-    if (differenceBetweenLat > 0 && differenceBetweenLng > 0){
+    if (differenceBetweenLat < 0 && differenceBetweenLng < 0){
         //neg, neg
         return "NorthEast"
     }
-    if (differenceBetweenLat > 0 && differenceBetweenLng < 0){
+    if (differenceBetweenLat < 0 && differenceBetweenLng > 0){
         //pos, neg
         return "SouthEast"
     }
 }
 
+let swoopyLayer = L.layerGroup()
+
+// for the zoom to clear the swoopies so that you can re-add the new swoopies
+
+function refreshSwoopies(){
+    console.log('refresh swoopies')
+    swoopyLayer.clearLayers()
+    tempData.forEach(data => {
+        console.log('tempdatas data:')
+        console.log(data)
+        let latLng = [data.lat,data.lng] 
+        let thisDataLineDirection = calculateLTTOffsets(latLng)
+        addSwoopy(data,thisDataLineDirection)
+    })
+    swoopyLayer.addTo(map)
+}
+
 // step1 - load the data to draw the lines from
 // todo: this function to draw the lines based on the lat/lng for each marker
 function addSwoopy(startingData,directionOffset){
+
     let offSet = [0,0]
-    if (directionOffset == "SouthWest"){
-        // draw a line from the marker to the LTT
-        // add the for SouthWest
-        offSet = [-10, -10]
-        }
-    if (directionOffset == "NorthWest"){
-        offset = [-10, 10]
+
+    switch(directionOffset){
+        case "SouthWest":
+            offSet = [-.025, -.025]
+            break;
+        case "NorthWest":
+            offSet = [-.025, .025]
+            break;
+        case "NorthEast":
+            offSet = [.025, .025]
+            break;
+        case "SouthEast":
+            offSet = [.025, -.025]
+            break;
     }
-    if (directionOffset == "NorthEast"){
-        offset = [10, 10]
-    }
-    if (directionOffset == "SouthEast"){
-        offset = [10, -10]
-    }
+
     // change the offset based on the direction
     let shiftedLTTlat = LTT.lat + offSet[0]
     let shiftedLTTlng = LTT.lng + offSet[1]
     
     // addTo Layer so you can remove it later
-    L.swoopyArrow([startingData.lat,startingData.lng], [shiftedLTTlat,shiftedLTTlng], {
+    swoopyLayer.addLayer(L.swoopyArrow([startingData.lat,startingData.lng], [shiftedLTTlat,shiftedLTTlng], {
             weight: 1,
             iconAnchor: [20, 10],
             iconSize: [20, 16]
-          }).addTo(map);
+          }))
     console.log('drawing swoopies')
 }
 
@@ -420,8 +460,11 @@ function populateTable(data){
 addTable()
 loadData(dataUrl)
 
-// let swoopyForZoomLevel10{
+/////////////////// zooooom stuff ///////////////////////
+function changeSwoopyBasedonZoom(){
+    refreshSwoopies()
+} 
 
-// }
-
-//
+map.on('zoomend',function(e){
+      changeSwoopyBasedonZoom()
+  });

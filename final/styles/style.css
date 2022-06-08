@@ -111,3 +111,8 @@ a{
 .niceRow{
     cursor: pointer;
 }
+
+/* hack for removing leaflet zoom controls!!!!!!!!!!! */
+.leaflet-control-zoom{
+    display: none;
+}
